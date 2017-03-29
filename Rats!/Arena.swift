@@ -14,7 +14,7 @@ class Arena
     private var m_rows:     Int
     private var m_cols:     Int
     private var m_player:   Player?
-    private var m_rats:     Array<Rat?>
+    private var m_rats:     Array<Rat>
     private var m_history:  History!
     private var m_nRats:    Int
     private var m_turns:    Int
@@ -31,7 +31,7 @@ class Arena
         m_rows = nRows
         m_cols = nCols
         m_player = nil
-        m_rats = Array<Rat?>()
+        m_rats = Array<Rat>()
         m_history = History(nRows: nRows, nCols: nCols)
         m_nRats = 0
         m_turns = 0
@@ -71,11 +71,7 @@ class Arena
         var count = 0
         for rat in m_rats
         {
-            guard rat != nil else {
-                break
-            }
-            
-            if rat?.row() == r  &&  rat?.col() == c {
+            if rat.row() == r  &&  rat.col() == c {
                 count += 1
             }
         }
@@ -86,7 +82,7 @@ class Arena
     
     public func display(msg: String)
     {
-        var displayGrid = [[Character?]]()
+        var displayGrid = [[Character]]()
         
         // Fill displayGrid with dots (empty) and stars (poison pellets)
         for r in 1 ... rows()
@@ -101,23 +97,17 @@ class Arena
         // Indicate each rat's position
         for rat in m_rats
         {
-            guard rat != nil else
-            {
-                break
-            }
+            let gridChar = displayGrid[rat.row()-1][rat.col()-1]
             
-            if let gridChar = displayGrid[(rat?.row())!-1][(rat?.col())!-1]
+            switch (gridChar)
             {
-                switch (gridChar)
-                {
-                case ".":  displayGrid[(rat?.row())!-1][(rat?.col())!-1] = "R"; break;
-                case "R":  displayGrid[(rat?.row())!-1][(rat?.col())!-1] = "2"; break;
-                case "9":  break;
-                default:
-                    let newNum = Int(String(gridChar))! + 1
-                    displayGrid[(rat?.row())!-1][(rat?.col())!-1] = Character(String(newNum))
-                    break  // '2' through '8'
-                }
+            case ".":  displayGrid[rat.row()-1][rat.col()-1] = "R"; break;
+            case "R":  displayGrid[rat.row()-1][rat.col()-1] = "2"; break;
+            case "9":  break;
+            default:
+                let newNum = Int(String(gridChar))! + 1
+                displayGrid[rat.row()-1][rat.col()-1] = Character(String(newNum))
+                break  // '2' through '8'
             }
         }
         
@@ -133,7 +123,7 @@ class Arena
         {
             for c in 1 ... cols()
             {
-                print(displayGrid[r-1][c-1]!, terminator: "")
+                print(displayGrid[r-1][c-1], terminator: "")
             }
             print("")
         }
@@ -216,25 +206,19 @@ class Arena
     
     public func moveRats()
     {
-        var k = m_nRats - 1
+        var k = 0
         
         // Move all rats
-        for rat in m_rats.reversed()
+        for rat in m_rats
         {
-            guard rat != nil else
-            {
-                continue
-            }
+            rat.move()
             
-            rat?.move()
-            
-            if m_player != nil  && rat?.row() == m_player?.row()  &&  rat?.col() == m_player?.col()
+            if m_player != nil  && rat.row() == m_player?.row()  &&  rat.col() == m_player?.col()
             {
                 m_player?.setDead()
             }
-            
         
-            if (rat?.isDead())!
+            if rat.isDead()
             {
                 
                 m_rats.remove(at: k)
@@ -250,7 +234,7 @@ class Arena
                 m_nRats -= 1
             }
             
-            k -= 1
+            k += 1
         }
         
         // Another turn has been taken
