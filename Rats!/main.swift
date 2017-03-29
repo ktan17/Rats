@@ -8,5 +8,9 @@
 
 import Foundation
 
-print("Hello, World!")
+// Create a game
+// Use this instead to create a mini-game:   Game g(3, 5, 2);
+var g = Game(rows: 10, cols: 12, nRats: 10)
 
+// Play the game
+g.play()
