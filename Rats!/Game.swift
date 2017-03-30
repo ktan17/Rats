@@ -18,23 +18,23 @@ class Game
         if nRats < 0
         {
             print("***** Cannot create Game with negative number of rats!")
-            exit(1);
+            exit(1)
         }
         
         if nRats > Globals.MAXRATS
         {
             print("***** Trying to create Game with ", nRats, " rats; only ", Globals.MAXRATS, " are allowed!")
-            exit(1);
+            exit(1)
         }
         
         if rows == 1  &&  cols == 1  &&  nRats > 0
         {
             print("***** Cannot create Game with nowhere to place the rats!")
-            exit(1);
+            exit(1)
         }
         
         // Create arena
-        m_arena = Arena(nRows: rows, nCols: cols);
+        m_arena = Arena(nRows: rows, nCols: cols)
         
         // Add player
         var rPlayer: Int
@@ -45,7 +45,7 @@ class Game
             cPlayer = randInt(min: 1, max: UInt(cols))
         } while m_arena?.getCellStatus(r: rPlayer, c: cPlayer) != Globals.EMPTY
         
-        let _ = m_arena?.addPlayer(r: rPlayer, c: cPlayer);
+        let _ = m_arena?.addPlayer(r: rPlayer, c: cPlayer)
         
         // Populate with rats
         var temp = nRats
@@ -71,7 +71,7 @@ class Game
             print("Your move (n/e/s/w/x or nothing): ")
             var playerMove = readLine()!
             
-            let player = m_arena?.player();
+            let player = m_arena?.player()
             var dir = 0
             
             if playerMove.characters.count == 0
@@ -96,7 +96,7 @@ class Game
                 else if Character(playerMove) == "h"
                 {
                     
-                    m_arena?.history().display();
+                    m_arena?.history().display()
                     
                     print("Press enter to continue.")
                     let _ = readLine()
@@ -116,7 +116,7 @@ class Game
     
     public func play()
     {
-        m_arena?.display(msg: "");
+        m_arena?.display(msg: "")
         while !(m_arena?.player()?.isDead())!  &&  (m_arena?.ratCount())! > 0
         {
             let msg = takePlayerTurn()

@@ -24,7 +24,7 @@ class Arena
         if nRows <= 0  ||  nCols <= 0  ||  nRows > Globals.MAXROWS  ||  nCols > Globals.MAXCOLS
         {
             print("***** Arena created with invalid size ", nRows, " by ", nCols, "!")
-            exit(1);
+            exit(1)
         }
         
         m_grid = Array(repeating: Array(repeating: Globals.EMPTY, count: nCols), count: nRows)
@@ -52,18 +52,18 @@ class Arena
     
     public func player() -> Player?
     {
-        return m_player;
+        return m_player
     }
     
     public func ratCount() -> Int
     {
-        return m_nRats;
+        return m_nRats
     }
     
     public func getCellStatus(r: Int, c: Int) -> Int
     {
-        checkPos(r: r, c: c);
-        return m_grid[r-1][c-1];
+        checkPos(r: r, c: c)
+        return m_grid[r-1][c-1]
     }
     
     public func numberOfRatsAt(r: Int, c: Int) -> Int
@@ -75,7 +75,7 @@ class Arena
                 count += 1
             }
         }
-        return count;
+        return count
     }
     
     // Mutators
@@ -118,7 +118,7 @@ class Arena
         }
         
         // Draw the grid
-        clearScreen();
+        clearScreen()
         for r in 1 ... rows()
         {
             for c in 1 ... cols()
@@ -178,7 +178,7 @@ class Arena
         
         m_rats.append(Rat(ap: self, r: r, c: c))
         m_nRats += 1
-        return true;
+        return true
     }
     
     public func addPlayer(r: Int, c: Int) -> Bool
@@ -200,8 +200,8 @@ class Arena
             return false
         }
         
-        m_player = Player(ap: self, r: r, c: c);
-        return true;
+        m_player = Player(ap: self, r: r, c: c)
+        return true
     }
     
     public func moveRats()
@@ -253,7 +253,7 @@ class Arena
         if (!isPosInBounds(r: r, c: c))
         {
             print("***** Invalid arena position (", r, ", ", c, ")")
-            exit(1);
+            exit(1)
         }
     }
     

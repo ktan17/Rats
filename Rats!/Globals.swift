@@ -15,21 +15,21 @@ struct Globals
     // Manifest constants
     ///////////////////////////////////////////////////////////////////////////
     
-    static let MAXROWS = 20;            // max number of rows in the arena
-    static let MAXCOLS = 20;            // max number of columns in the arena
-    static let MAXRATS = 100;           // max number of rats allowed
-    static let INITIAL_RAT_HEALTH = 2;  // initial rat health
-    static let POISONED_IDLE_TIME = 1;  // poisoned rat idles this many turns
-                                        // between moves
+    static let MAXROWS = 20            // max number of rows in the arena
+    static let MAXCOLS = 20            // max number of columns in the arena
+    static let MAXRATS = 100           // max number of rats allowed
+    static let INITIAL_RAT_HEALTH = 2  // initial rat health
+    static let POISONED_IDLE_TIME = 1  // poisoned rat idles this many turns
+                                       // between moves
     
-    static let NORTH = 0;
-    static let EAST  = 1;
-    static let SOUTH = 2;
-    static let WEST  = 3;
-    static let NUMDIRS = 4;
+    static let NORTH = 0
+    static let EAST  = 1
+    static let SOUTH = 2
+    static let WEST  = 3
+    static let NUMDIRS = 4
     
-    static let EMPTY      = 0;
-    static let HAS_POISON = 1;
+    static let EMPTY      = 0
+    static let HAS_POISON = 1
     
 }
 
@@ -78,7 +78,7 @@ func decodeDirection(ch: Character, dir: inout Int) -> Bool
     default:
         return false
     }
-    return true;
+    return true
 }
 
 // Return false without changing anything if moving one step from (r,c)
@@ -87,8 +87,8 @@ func decodeDirection(ch: Character, dir: inout Int) -> Bool
 // return true.
 func attemptMove(a: Arena, dir: Int, r: inout Int, c: inout Int) -> Bool
 {
-    var rnew = r;
-    var cnew = c;
+    var rnew = r
+    var cnew = c
     
     switch dir
     {
@@ -110,7 +110,7 @@ func attemptMove(a: Arena, dir: Int, r: inout Int, c: inout Int) -> Bool
         
         if c >= a.cols()
         {
-            return false;
+            return false
         }
             
         else
@@ -138,7 +138,7 @@ func attemptMove(a: Arena, dir: Int, r: inout Int, c: inout Int) -> Bool
         
         if c <= 1
         {
-            return false;
+            return false
         }
             
         else
@@ -153,9 +153,9 @@ func attemptMove(a: Arena, dir: Int, r: inout Int, c: inout Int) -> Bool
         
     }
     
-    r = rnew;
-    c = cnew;
-    return true;
+    r = rnew
+    c = cnew
+    return true
 }
 
 func clearScreen()
