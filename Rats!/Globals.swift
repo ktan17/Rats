@@ -43,8 +43,7 @@ func randInt(min: UInt, max: UInt) -> Int
     {
         swap(&num1, &num2)
     }
-    
-    return Int(arc4random_uniform(UInt32(num2 - num1)) + UInt32(num1))
+    return Int(arc4random_uniform(UInt32(num2 - num1 + 1)) + UInt32(num1))
 }
 
 func decodeDirection(ch: Character, dir: inout Int) -> Bool
@@ -77,7 +76,6 @@ func attemptMove(a: Arena, dir: Int, r: inout Int, c: inout Int) -> Bool
 {
     var rnew = r
     var cnew = c
-    
     switch dir
     {
     case Globals.NORTH:
