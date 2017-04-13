@@ -51,28 +51,16 @@ func decodeDirection(ch: Character, dir: inout Int) -> Bool
 {
     switch ch
     {
-    case "n":
+    case "n", "N":
         dir = Globals.NORTH
         break
-    case "N":
-        dir = Globals.NORTH
-        break
-    case "e":
+    case "e", "E":
         dir = Globals.EAST
         break
-    case "E":
-        dir = Globals.EAST
-        break
-    case "s":
+    case "s", "S":
         dir = Globals.SOUTH
         break
-    case "S":
-        dir = Globals.SOUTH
-        break
-    case "w":
-        dir = Globals.WEST
-        break
-    case "W":
+    case "w", "W":
         dir = Globals.WEST
         break
     default:

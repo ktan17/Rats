@@ -69,10 +69,10 @@ class Player
             var msg = "Player moved "
             switch dir
             {
-            case Globals.NORTH: msg += "north"; break;
-            case Globals.EAST:  msg += "east";  break;
-            case Globals.SOUTH: msg += "south"; break;
-            case Globals.WEST:  msg += "west";  break;
+            case Globals.NORTH: msg += "north"; break    // multiple statements per line need a ;
+            case Globals.EAST:  msg += "east";  break
+            case Globals.SOUTH: msg += "south"; break
+            case Globals.WEST:  msg += "west";  break
             default:            break
             }
             msg += "."
